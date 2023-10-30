@@ -1,0 +1,10 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "prettier.useTabs": true,
+  "editor.formatOnSave": true,
+  "editor.detectIndentation": false,
+  "editor.indentSize": "tabSize",
+  "editor.insertSpaces": true
+}
