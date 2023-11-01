@@ -4,10 +4,6 @@ export const GET_HOME_MAIN = gql`
   query HomePage {
     page(id: "15", idType: DATABASE_ID) {
       id
-      homeMain {
-        motto
-        excerpt
-      }
       slug
       title
       featuredImage {
@@ -15,15 +11,32 @@ export const GET_HOME_MAIN = gql`
           sourceUrl
         }
       }
+      homeMain {
+        motto
+        excerpt
+      }
+      homeConsulting {
+        text
+        image {
+          sourceUrl
+        }
+        ctaText
+      }
     }
   }
 `;
 
 export const GET_ACHIEVEMENTS = gql`
   query Achievements {
-    achievements {
+    achievements(first: 5) {
       nodes {
-        title
+        achievementGeneral {
+          description
+          title
+          imageMd {
+            sourceUrl
+          }
+        }
       }
     }
   }
