@@ -40,3 +40,18 @@ export interface AchievementsBlockData {
     }[];
   };
 }
+
+export interface ReviewsQueryData {
+  reviews: {
+    nodes: {
+      reviewMain: {
+        subtext: string;
+        reviewText: string;
+        authorImage: {
+          sourceUrl: string;
+        };
+        author: string;
+      };
+    }[];
+  };
+}

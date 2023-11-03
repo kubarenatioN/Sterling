@@ -41,3 +41,20 @@ export const GET_ACHIEVEMENTS = gql`
     }
   }
 `;
+
+export const GET_REVIEWS = gql`
+  query Reviews {
+    reviews {
+      nodes {
+        reviewMain {
+          subtext
+          reviewText
+          authorImage {
+            sourceUrl
+          }
+          author
+        }
+      }
+    }
+  }
+`;

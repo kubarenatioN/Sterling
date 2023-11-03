@@ -27,6 +27,7 @@ const ConsultingBlock: FC<ConsultingBlockProps> = ({ data }) => {
         <div className='w-[600px]'>
           <h3 className='text-4xl'>{text}</h3>
           <FreeConsultingBtn
+            variant='secondary'
             text={ctaText}
             className='mt-8'></FreeConsultingBtn>
         </div>
