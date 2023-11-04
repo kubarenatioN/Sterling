@@ -34,7 +34,9 @@
 
     --radius: 0.5rem;
 
-    --tertriary: 212 43% 31%;
+    --tertriary: #254e9d;
+    --tertriary-hsl: 220, 62%, 38%;
+    --tertriary-rgb: 37, 78, 157;
   }
 
   .dark {

@@ -32,8 +32,8 @@ const config: Config = {
           foreground: 'hsl(var(--secondary-foreground))',
         },
         tertriary: {
-          DEFAULT: 'hsl(var(--tertriary))',
-          foreground: 'hsl(var(--tertriary-foreground))',
+          DEFAULT: 'var(--tertriary)',
+          foreground: 'var(--tertriary-foreground)',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',

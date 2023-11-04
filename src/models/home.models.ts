@@ -55,3 +55,25 @@ export interface ReviewsQueryData {
     }[];
   };
 }
+
+export interface FooterQuery {
+  contacts: {
+    nodes: {
+      contacts: {
+        address: string;
+        mapUrl: string;
+        phones: string;
+        workingHours: string;
+        map?: string;
+      };
+    }[];
+  };
+  socials: {
+    nodes: {
+      socialLink: {
+        id: string;
+        link: string;
+      };
+    }[];
+  };
+}

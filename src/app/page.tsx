@@ -1,12 +1,14 @@
 import AchievementsBlock from '@/components/AchievementsBlock';
 import ConsultingBlock from '@/components/ConsultingBlock';
 import ContactForm from '@/components/ContactForm';
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import ReviewsBlock from '@/components/ReviewsBlock';
 import { GET_HOME_MAIN } from '@/db/queries/home';
 import { getClient } from '@/lib/apollo/client';
 import { HomeMain } from '@/models';
 import Image from 'next/image';
+import styles from './main.module.css';
 
 export default async function Home() {
   const { data, error, loading } = await getClient().query<HomeMain>({
@@ -33,7 +35,7 @@ export default async function Home() {
 
   return (
     <main>
-      <div className='relative w-full min-h-screen block__first-screen'>
+      <div className='relative w-full'>
         <Image
           fill={true}
           src={sourceUrl}
@@ -41,10 +43,16 @@ export default async function Home() {
           style={{
             objectFit: 'cover',
           }}></Image>
-        <div className='relative z-1'>
+        <div className='relative min-h-screen z-1'>
           <Header></Header>
-          <div className='container'>
-            <h1 className='text-neutral-100'>{motto}</h1>
+          <div className='absolute top-[100px] bottom-[80px] w-full flex flex-col items-center justify-around'>
+            <Image src='/logo-light.svg' alt='Logo' width={160} height={160} />
+
+            <div className={styles.MottoRibbon}>
+              <h1 className='text-neutral-100 py-10 text-6xl uppercase text-center font-bold container'>
+                {motto}
+              </h1>
+            </div>
           </div>
         </div>
       </div>
@@ -82,6 +90,8 @@ export default async function Home() {
           <ContactForm></ContactForm>
         </div>
       </div>
+
+      <Footer />
     </main>
   );
 }

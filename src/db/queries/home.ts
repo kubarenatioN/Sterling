@@ -58,3 +58,27 @@ export const GET_REVIEWS = gql`
     }
   }
 `;
+
+export const GET_FOOTER = gql`
+  query Footer {
+    contacts {
+      nodes {
+        contacts {
+          address
+          mapUrl
+          phones
+          workingHours
+          map
+        }
+      }
+    }
+    socials {
+      nodes {
+        socialLink {
+          id
+          link
+        }
+      }
+    }
+  }
+`;

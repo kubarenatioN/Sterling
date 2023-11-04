@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { MailOptions } from 'nodemailer/lib/json-transport';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 export class MailerError extends Error {}
 
@@ -23,7 +24,7 @@ export async function sendMail(
     text,
   };
 
-  return new Promise((res, rej) => {
+  return new Promise<SMTPTransport.SentMessageInfo>((res, rej) => {
     transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
         rej(new MailerError('Error sending email via transporter'));

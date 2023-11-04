@@ -1,0 +1,20 @@
+.HeaderLink {
+  position: relative;
+  padding-bottom: 3px;
+}
+
+.HeaderLink:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: hsl(var(--secondary));
+  transition: .2s;
+}
+
+.HeaderLink:hover:after {
+  width: 100%;
+  left: 0;
+}
