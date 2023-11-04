@@ -1,0 +1,4 @@
+.PageHeading {
+  background: rgb(96, 149, 225);
+  background: linear-gradient(0deg, rgb(96, 149, 225) 0%, rgba(16,32,78,1) 100%);
+}

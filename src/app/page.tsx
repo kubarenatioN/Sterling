@@ -8,12 +8,16 @@ import { GET_HOME_MAIN } from '@/db/queries/home';
 import { getClient } from '@/lib/apollo/client';
 import { HomeMain } from '@/models';
 import Image from 'next/image';
+import { register as registerSwiper } from 'swiper/element/bundle';
 import styles from './main.module.css';
 
 export default async function Home() {
   const { data, error, loading } = await getClient().query<HomeMain>({
     query: GET_HOME_MAIN,
   });
+
+  // register Swiper custom elements
+  registerSwiper();
 
   const {
     page: {

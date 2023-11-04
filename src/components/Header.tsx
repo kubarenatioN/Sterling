@@ -1,39 +1,19 @@
+import { useMenu } from '@/lib/hooks/useMenu.hook';
 import { Phone } from 'lucide-react';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import FreeConsultingBtn from './FreeConsultingBtn';
 import styles from './styles/Header.module.css';
 
-const navItems = [
-  {
-    path: '/',
-    label: 'Home',
-  },
-  {
-    path: '/about',
-    label: 'About Us',
-  },
-  {
-    path: '/services',
-    label: 'Services',
-  },
-  {
-    path: '/team',
-    label: 'Team',
-  },
-  {
-    path: '/contacts',
-    label: 'Contacts',
-  },
-];
-
 interface HeaderProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 
 const Header: FC<HeaderProps> = ({ ...props }) => {
+  const navItems = useMenu();
+
   return (
     <header
-      className='container flex justify-between items-center py-6'
-      {...props}>
+      {...props}
+      className='container flex justify-between items-center py-6'>
       <nav className='text-neutral-100'>
         <ul className='flex gap-x-8'>
           {navItems.map((it, i) => {
