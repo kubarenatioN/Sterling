@@ -1,4 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        hostname: process.env.APP_DOMAIN,
+      },
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
