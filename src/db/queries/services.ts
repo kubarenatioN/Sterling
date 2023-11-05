@@ -13,10 +13,5 @@ export const GET_SERVICES = gql`
         }
       }
     }
-    freeConsulting(id: "121", idType: DATABASE_ID) {
-      freeConsulting {
-        text
-      }
-    }
   }
 `;

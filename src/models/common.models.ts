@@ -1,5 +1,7 @@
 export interface FreeConsultingData {
   freeConsulting: {
-    text: string;
+    freeConsulting: {
+      text: string;
+    };
   };
 }

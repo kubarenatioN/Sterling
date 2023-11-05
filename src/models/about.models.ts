@@ -1,5 +1,3 @@
-import { FreeConsultingData } from './common.models';
-
 export interface AboutUsInfo {
   abouts: {
     nodes: {
@@ -28,5 +26,4 @@ export interface AboutUsInfo {
       };
     }[];
   };
-  freeConsulting: FreeConsultingData;
 }

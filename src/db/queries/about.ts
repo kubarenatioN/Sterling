@@ -9,7 +9,6 @@ export const ABOUT_QUERY = gql`
           image {
             sourceUrl
           }
-          excerpt
         }
       }
     }
@@ -28,11 +27,6 @@ export const ABOUT_QUERY = gql`
             sourceUrl
           }
         }
-      }
-    }
-    freeConsulting(id: "121", idType: DATABASE_ID) {
-      freeConsulting {
-        text
       }
     }
   }

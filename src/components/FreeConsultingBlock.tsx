@@ -1,14 +1,17 @@
-import { FreeConsultingData } from '@/models/common.models';
-import { FC } from 'react';
+import { GET_FREE_CONSULTING } from '@/db/queries/free-consulting';
+import { getClient } from '@/lib/apollo/client';
+import { FreeConsultingData } from '@/models';
 import FreeConsultingBtn from './FreeConsultingBtn';
 
-interface FreeConsultingBlockProps {
-  data: FreeConsultingData;
-}
+const FreeConsultingBlock = async () => {
+  const { data } = await getClient().query<FreeConsultingData>({
+    query: GET_FREE_CONSULTING,
+  });
 
-const FreeConsultingBlock: FC<FreeConsultingBlockProps> = ({ data }) => {
   const {
-    freeConsulting: { text },
+    freeConsulting: {
+      freeConsulting: { text },
+    },
   } = data;
 
   return (

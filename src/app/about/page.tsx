@@ -40,7 +40,7 @@ const page = async () => {
       </div>
 
       <div className='container pt-[100px] flex flex-col items-center gap-6'>
-        <FreeConsultingBlock data={data.freeConsulting} />
+        <FreeConsultingBlock />
       </div>
 
       <Footer />
