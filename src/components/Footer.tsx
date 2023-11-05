@@ -103,7 +103,16 @@ const Footer = async () => {
       <div className='bg-neutral-900'>
         <div className='container py-6 flex justify-center'>
           <a href='/'>
-            <Image src='/logo-light.svg' alt='Logo' width={80} height={80} />
+            <Image
+              src='/logo-light.svg'
+              alt='Logo'
+              width={80}
+              height={80}
+              style={{
+                width: 80,
+                height: 80,
+              }}
+            />
           </a>
         </div>
       </div>

@@ -21,6 +21,7 @@ const AboutUsBlock: FC<AboutUsBlockProps> = ({
             src={imageSrc}
             alt=''
             fill
+            priority
             sizes='(max-width: 768px) 300px, (max-width: 1200px) 400px, 520px'
             style={{
               objectFit: 'cover',

@@ -3,7 +3,6 @@ export interface AboutUsInfo {
     nodes: {
       aboutMain: {
         text: string;
-        excerpt: string;
         image: {
           sourceUrl: string;
         };

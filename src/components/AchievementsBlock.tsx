@@ -28,11 +28,12 @@ const AchievementsBlock = async () => {
               <Image
                 src={sourceUrl}
                 alt=''
-                width={500}
-                height={300}
+                width={540}
+                height={340}
                 style={{
+                  height: 340,
+                  width: 540,
                   objectFit: 'cover',
-                  height: 300,
                 }}
               />
             </div>

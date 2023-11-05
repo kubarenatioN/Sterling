@@ -1,13 +1,32 @@
-import Header from '@/components/Header';
-import { FC } from 'react';
+import Footer from '@/components/Footer';
+import FreeConsultingBlock from '@/components/FreeConsultingBlock';
+import PageHeading from '@/components/PageHeading';
+import ServicesBlock from '@/components/ServicesBlock';
+import { GET_SERVICES } from '@/db/queries/services';
+import { getClient } from '@/lib/apollo/client';
+import { ServicesData } from '@/models/services.model';
 
-interface pageProps {}
+const page = async () => {
+  const { data } = await getClient().query<ServicesData>({
+    query: GET_SERVICES,
+  });
 
-const page: FC<pageProps> = ({}) => {
+  const { nodes } = data.services;
+
   return (
     <>
-      <Header></Header>
-      <div>page</div>;
+      <PageHeading></PageHeading>
+
+      <div className='mt-[100px] container'>
+        <h1 className='text-3xl text-center pb-8'>Our Services</h1>
+        <ServicesBlock data={nodes.map((n) => n.serviceInfo)} />
+      </div>
+
+      <div className='container pt-[100px] flex flex-col items-center gap-6'>
+        <FreeConsultingBlock />
+      </div>
+
+      <Footer />
     </>
   );
 };

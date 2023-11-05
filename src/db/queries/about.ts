@@ -9,7 +9,6 @@ export const ABOUT_QUERY = gql`
           image {
             sourceUrl
           }
-          excerpt
         }
       }
     }

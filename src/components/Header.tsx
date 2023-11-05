@@ -11,29 +11,31 @@ const Header: FC<HeaderProps> = ({ ...props }) => {
   const navItems = useMenu();
 
   return (
-    <header
-      {...props}
-      className='container flex justify-between items-center py-6'>
-      <nav className='text-neutral-100'>
-        <ul className='flex gap-x-8'>
-          {navItems.map((it, i) => {
-            return (
-              <li key={i} className='text-xl'>
-                <Link href={it.path} className={styles.HeaderLink}>
-                  {it.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-      <FreeConsultingBtn
-        text='Free call'
-        size='lg'
-        className='text-md'
-        icon={<Phone size='sm' />}
-        variant='secondary'></FreeConsultingBtn>
-    </header>
+    <div className='bg-neutral-800/70'>
+      <header
+        {...props}
+        className='container flex justify-between items-center py-4'>
+        <nav className='text-neutral-100'>
+          <ul className='flex gap-x-8'>
+            {navItems.map((it, i) => {
+              return (
+                <li key={i} className='text-xl'>
+                  <Link href={it.path} className={styles.HeaderLink}>
+                    {it.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+        <FreeConsultingBtn
+          text='Free call'
+          size='lg'
+          className='text-md'
+          icon={<Phone size='20' />}
+          variant='secondary'></FreeConsultingBtn>
+      </header>
+    </div>
   );
 };
 

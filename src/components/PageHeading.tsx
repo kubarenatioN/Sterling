@@ -8,10 +8,19 @@ interface PageHeadingProps {}
 const PageHeading: FC<PageHeadingProps> = ({}) => {
   return (
     <div className='relative'>
-      <div className='absolute z-20 top-0 bottom-0 w-full flex flex-col items-center'>
+      <div className='absolute z-20 top-0 bottom-0 w-full flex flex-col'>
         <Header></Header>
         <div className='grow flex items-center justify-center'>
-          <Image src='logo-light.svg' alt='' width={160} height={160} />
+          <Image
+            src='logo-light.svg'
+            alt=''
+            width={160}
+            height={160}
+            style={{
+              width: 160,
+              height: 160,
+            }}
+          />
         </div>
       </div>
       <div

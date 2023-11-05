@@ -9,7 +9,8 @@
   --swiper-pagination-bullet-inactive-opacity: 1;
   --swiper-pagination-bullet-width: 12px;
   --swiper-pagination-bullet-height: 12px;
-  --swiper-pagination-color: var(--tertriary);
+  --swiper-pagination-color: #fefefe;
+  --swiper-pagination-bullet-opacity: .6;
 }
 
 .Pagination .swiper-pagination {
