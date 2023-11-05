@@ -8,16 +8,12 @@ import { GET_HOME_MAIN } from '@/db/queries/home';
 import { getClient } from '@/lib/apollo/client';
 import { HomeMain } from '@/models';
 import Image from 'next/image';
-import { register as registerSwiper } from 'swiper/element/bundle';
 import styles from './main.module.css';
 
 export default async function Home() {
   const { data, error, loading } = await getClient().query<HomeMain>({
     query: GET_HOME_MAIN,
   });
-
-  // register Swiper custom elements
-  registerSwiper();
 
   const {
     page: {
@@ -41,16 +37,26 @@ export default async function Home() {
     <main>
       <div className='relative w-full'>
         <Image
-          fill={true}
+          fill
+          priority
           src={sourceUrl}
-          alt=''
+          alt='Large luxury building in fullscreen'
           style={{
             objectFit: 'cover',
           }}></Image>
         <div className='relative min-h-screen z-1'>
           <Header></Header>
           <div className='absolute top-[100px] bottom-[80px] w-full flex flex-col items-center justify-around'>
-            <Image src='/logo-light.svg' alt='Logo' width={160} height={160} />
+            <Image
+              src='/logo-light.svg'
+              alt='Logo'
+              width={160}
+              height={160}
+              style={{
+                width: 160,
+                height: 160,
+              }}
+            />
 
             <div className={styles.MottoRibbon}>
               <h1 className='text-neutral-100 py-10 text-6xl uppercase text-center font-bold container'>

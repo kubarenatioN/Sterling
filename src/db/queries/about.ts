@@ -30,5 +30,10 @@ export const ABOUT_QUERY = gql`
         }
       }
     }
+    freeConsulting(id: "121", idType: DATABASE_ID) {
+      freeConsulting {
+        text
+      }
+    }
   }
 `;

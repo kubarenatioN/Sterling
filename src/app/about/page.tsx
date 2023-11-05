@@ -1,7 +1,7 @@
 import AboutUsBlock from '@/components/AboutUsBlock';
 import CompanyValuesBlock from '@/components/CompanyValuesBlock';
 import Footer from '@/components/Footer';
-import FreeConsultingBtn from '@/components/FreeConsultingBtn';
+import FreeConsultingBlock from '@/components/FreeConsultingBlock';
 import PageHeading from '@/components/PageHeading';
 import ProjectsBlock from '@/components/ProjectsBlock';
 import { ABOUT_QUERY } from '@/db/queries/about';
@@ -40,8 +40,7 @@ const page = async () => {
       </div>
 
       <div className='container pt-[100px] flex flex-col items-center gap-6'>
-        <p className='w-[620px] text-center text-xl'>{aboutMain.excerpt}</p>
-        <FreeConsultingBtn text='Get free consulting session' />
+        <FreeConsultingBlock data={data.freeConsulting} />
       </div>
 
       <Footer />
