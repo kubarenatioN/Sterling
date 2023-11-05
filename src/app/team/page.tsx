@@ -26,11 +26,8 @@ const page = async () => {
     <>
       <PageHeading></PageHeading>
 
-      <div className='mt-[100px] container'>
-        <h1 className='text-3xl text-center pb-8'>Our Services</h1>
-      </div>
-
-      <div className='container'>
+      <div className='container mt-[100px]'>
+        <h1 className='text-3xl text-center pb-8'>Our Team</h1>
         <TeamBlock data={members} />
       </div>
 
