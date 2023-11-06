@@ -17,6 +17,7 @@ const PageHeading: FC<PageHeadingProps> = ({}) => {
         <div className='grow flex items-end justify-center pb-6'>
           <Image
             src='logo-light.svg'
+            priority
             alt=''
             width={160}
             height={160}
