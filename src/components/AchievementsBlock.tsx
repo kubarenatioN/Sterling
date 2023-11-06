@@ -13,7 +13,7 @@ const AchievementsBlock = async () => {
   } = data;
 
   return (
-    <div className='container flex flex-col gap-16'>
+    <div className='container flex flex-col items-center md:items-start gap-16'>
       {nodes.map((node, i) => {
         const {
           description,
@@ -22,23 +22,24 @@ const AchievementsBlock = async () => {
         } = node.achievementGeneral;
         return (
           <div
-            className='flex even:flex-row-reverse justify-center items-center w-full gap-x-10'
+            className='flex md:even:flex-row-reverse md:flex-row flex-col-reverse justify-center items-center md:gap-x-10 w-full sm:w-[500px] md:w-full'
             key={i}>
-            <div>
+            <div className='w-full md:w-auto'>
               <Image
                 src={sourceUrl}
                 alt=''
                 width={540}
                 height={340}
+                className='md:h-[340px] md:w-[540px] w-full h-auto sm:min-h-[240px]'
                 style={{
-                  height: 340,
-                  width: 540,
                   objectFit: 'cover',
                 }}
               />
             </div>
-            <div className='w-[500px]'>
-              <span className='text-[96px] leading-tight'>{title}</span>
+            <div className='lg:w-[500px] md:w-[40%] w-full sm:w-[480px] pb-4 md:pb-0 text-center md:text-left'>
+              <span className='sm:text-6xl lg:text-8xl text-4xl leading-tight'>
+                {title}
+              </span>
               <div dangerouslySetInnerHTML={{ __html: description }}></div>
             </div>
           </div>

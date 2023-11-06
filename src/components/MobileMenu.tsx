@@ -72,8 +72,10 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
                 );
               })}
               <li>
-                <button onClick={onMenuToggle}>
-                  <X></X>
+                <button
+                  onClick={onMenuToggle}
+                  className='rounded-full p-1 bg-neutral-800'>
+                  <X width={20} height={20} className='text-zinc-100'></X>
                 </button>
               </li>
             </ul>
