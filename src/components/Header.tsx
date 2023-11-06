@@ -11,10 +11,10 @@ const Header: FC<HeaderProps> = ({ ...props }) => {
   const navItems = useMenu();
 
   return (
-    <div className='bg-neutral-800/70'>
+    <div className=''>
       <header
         {...props}
-        className='container flex justify-between items-center py-4'>
+        className='container flex justify-between items-center'>
         <nav className='text-neutral-100'>
           <ul className='flex gap-x-8'>
             {navItems.map((it, i) => {

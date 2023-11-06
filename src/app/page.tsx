@@ -2,7 +2,8 @@ import AchievementsBlock from '@/components/AchievementsBlock';
 import ConsultingBlock from '@/components/ConsultingBlock';
 import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import HeaderWrapper from '@/components/HeaderWrapper';
+import MobileMenu from '@/components/MobileMenu';
 import ReviewsBlock from '@/components/ReviewsBlock';
 import { GET_HOME_MAIN } from '@/db/queries/home';
 import { getClient } from '@/lib/apollo/client';
@@ -45,7 +46,10 @@ export default async function Home() {
             objectFit: 'cover',
           }}></Image>
         <div className='relative min-h-screen z-1'>
-          <Header></Header>
+          <HeaderWrapper></HeaderWrapper>
+          <div className='md:hidden'>
+            <MobileMenu></MobileMenu>
+          </div>
           <div className='absolute top-[100px] bottom-[80px] w-full flex flex-col items-center justify-around'>
             <Image
               src='/logo-light.svg'
@@ -59,7 +63,7 @@ export default async function Home() {
             />
 
             <div className={styles.MottoRibbon}>
-              <h1 className='text-neutral-100 py-10 text-6xl uppercase text-center font-bold container'>
+              <h1 className='text-neutral-100 py-10 md:text-6xl uppercase text-center font-bold container text-3xl'>
                 {motto}
               </h1>
             </div>
