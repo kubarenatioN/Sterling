@@ -9,7 +9,7 @@ interface TeamBlockProps {
 
 const TeamBlock: FC<TeamBlockProps> = ({ data }) => {
   return (
-    <div className='grid grid-cols-2 gap-x-4 gap-y-8 justify-items-center max-w-[800px] mx-auto'>
+    <div className='md:grid md:grid-cols-2 flex flex-col gap-x-4 gap-y-8 justify-items-center max-w-[800px] mx-auto'>
       {data.map((person, i) => {
         const {
           description,
@@ -36,7 +36,7 @@ const TeamBlock: FC<TeamBlockProps> = ({ data }) => {
                 objectFit: 'cover',
               }}
             />
-            <span className='text-3xl'>{fullName}</span>
+            <span className='md:text-3xl text-xl'>{fullName}</span>
             {position && (
               <span className='text-sm text-zinc-500 italic'>{position}</span>
             )}
