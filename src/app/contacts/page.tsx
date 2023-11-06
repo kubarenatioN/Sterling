@@ -14,7 +14,7 @@ const page: FC<pageProps> = ({}) => {
         <h2 className='text-xl text-center pb-8 max-w-sm'>
           Fill the form below to get free consulting session from our experts!
         </h2>
-        <div className='w-[400px]'>
+        <div className='xs:w-[360px] w-full'>
           <ContactForm></ContactForm>
         </div>
       </div>

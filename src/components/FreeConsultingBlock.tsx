@@ -15,12 +15,12 @@ const FreeConsultingBlock = async () => {
   } = data;
 
   return (
-    <>
+    <div className='flex flex-col items-center gap-6'>
       <div
-        className='w-[620px] text-center text-xl'
+        className='md:w-[620px] w-full text-center md:text-xl text-base'
         dangerouslySetInnerHTML={{ __html: text }}></div>
       <FreeConsultingBtn text='Get free consulting session' />
-    </>
+    </div>
   );
 };
 

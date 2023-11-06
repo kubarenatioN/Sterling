@@ -49,7 +49,7 @@ const ProjectsSlider: FC<ProjectsSliderProps> = ({ projects }) => {
         {projects.map((p, i) => {
           return (
             <SwiperSlide key={i}>
-              <div className='relative w-full h-[600px]'>
+              <div className='relative w-full md:h-[600px] sm:h-[400px] h-[200px]'>
                 <Image
                   fill
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px'

@@ -22,7 +22,7 @@ const page = async () => {
         <ServicesBlock data={nodes.map((n) => n.serviceInfo)} />
       </div>
 
-      <div className='container pt-[100px] flex flex-col items-center gap-6'>
+      <div className='container pt-[100px]'>
         <FreeConsultingBlock />
       </div>
 

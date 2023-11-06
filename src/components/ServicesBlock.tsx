@@ -18,21 +18,22 @@ const ServicesBlock: FC<ServicesBlockProps> = ({ data }) => {
         return (
           <div
             key={i}
-            className='flex justify-center items-center gap-x-10 even:flex-row-reverse'>
-            <div className='min-w-[500px] w-[500px]'>
+            className='flex flex-col md:flex-row justify-center items-center lg:gap-x-10 gap-x-6 md:even:flex-row-reverse even:self-end sm:w-[500px] w-full md:w-auto'>
+            <div className='lg:min-w-[500px] lg:w-[500px] md:w-[50%] w-full'>
               <Image
                 priority={i === 0}
                 src={sourceUrl}
                 alt='Luxury Building'
                 width={520}
                 height={400}
+                className='w-full md:w-[500px]'
                 style={{
                   objectFit: 'cover',
                 }}
               />
             </div>
-            <div className='shrink basis-1/2'>
-              <h3 className='text-2xl pb-4 mb-4 border-b border-b-zinc-700'>
+            <div className='shrink basis-1/2 pt-4 md:pt-0'>
+              <h3 className='sm:text-2xl text-xl pb-4 mb-4 border-b border-b-zinc-700'>
                 {title}
               </h3>
               <div

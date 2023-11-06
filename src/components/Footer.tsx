@@ -42,19 +42,23 @@ const Footer = async () => {
   return (
     <>
       <div className='bg-tertriary mt-[100px] pt-16 pb-10'>
-        <div className='container flex justify-center items-center gap-10 text-zinc-100'>
+        <div className='container flex flex-col-reverse md:flex-row justify-center items-center lg:gap-10 gap-4 text-zinc-100'>
           {mapIframe && (
-            <div dangerouslySetInnerHTML={{ __html: mapIframe }}></div>
+            <div
+              className='w-full md:w-auto [&>iframe]:w-full [&>iframe]:lg:w-[500px] [&>iframe]:md:w-[360px]'
+              dangerouslySetInnerHTML={{ __html: mapIframe }}></div>
           )}
-          <div className='basis-[40%] flex flex-col gap-4'>
+          <div className='basis-[50%] flex flex-col gap-4'>
             <h3 className='text-3xl'>Our Contacts</h3>
 
-            <div className='grid grid-cols-2 gap-8'>
+            <div className='flex flex-wrap lg:gap-4 gap-x-4 gap-y-6'>
               {nodes.map((node, i) => {
                 const { contacts } = node;
 
                 return (
-                  <div className='flex flex-col gap-4' key={i}>
+                  <div
+                    className='flex flex-col gap-4 lg:w-[calc(50%-1rem)] sm:w-[calc(50%-1rem)] w-full'
+                    key={i}>
                     <div className='flex flex-col'>
                       <span className='text-zinc-300 text-sm italic'>
                         Address
