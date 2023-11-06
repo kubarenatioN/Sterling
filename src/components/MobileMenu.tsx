@@ -46,6 +46,8 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
     <div className={cn('text-zinc-100 fixed top-0 h-0 z-[100]')}>
       <button
         onClick={onMenuToggle}
+        aria-label='Open mobile menu'
+        type='button'
         className={cn(
           'absolute z-[102] top-2 right-4 flex justify-center items-center bg-neutral-900 p-1.5 rounded-md'
         )}>
@@ -73,6 +75,8 @@ const MobileMenu: FC<MobileMenuProps> = ({}) => {
               })}
               <li>
                 <button
+                  aria-label='Close mobile menu'
+                  type='button'
                   onClick={onMenuToggle}
                   className='rounded-full p-1 bg-neutral-800'>
                   <X width={20} height={20} className='text-zinc-100'></X>

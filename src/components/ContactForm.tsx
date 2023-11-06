@@ -92,8 +92,8 @@ const ContactForm: FC<ContactFormProps> = ({ ...props }) => {
         type='submit'
         variant='accent'
         className='self-center w-1/2'
-        aria-label='Submit form'>
-        Send
+        aria-label='Submit form to get an e-mail'>
+        Submit
       </Button>
     </form>
   );
