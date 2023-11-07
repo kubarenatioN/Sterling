@@ -9,6 +9,7 @@ const SocialIcon = ({ link, id }: { link: string; id: string }) => {
     <a
       href={link}
       target='_blank'
+      aria-label={`External link to the official ${id} of the company`}
       className='w-8 h-8 p-1 flex text-neutral-800 bg-zinc-100 rounded-full'>
       {getIcon(id)}
     </a>
@@ -71,7 +72,7 @@ const Footer = async () => {
                       <span className='text-zinc-300 text-sm italic'>
                         Contacts
                       </span>
-                      <div>
+                      <div className='flex flex-col gap-2'>
                         {contacts.phones.split(',').map((phone) => {
                           return (
                             <p key={phone}>
