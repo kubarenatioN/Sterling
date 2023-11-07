@@ -8,8 +8,20 @@ import ReviewsBlock from '@/components/ReviewsBlock';
 import { GET_HOME_MAIN } from '@/db/queries/home';
 import { getClient } from '@/lib/apollo/client';
 import { HomeMain } from '@/models';
+import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
 import styles from './main.module.css';
+
+export async function generateMetadata(
+  props: any,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return {
+    other: {
+      'google-site-verification': '34qZu2Zsuk-pZXYS-kQjKTltOMSz8BMVaXLZ9xz_iXw',
+    },
+  };
+}
 
 export default async function Home() {
   const { data, error, loading } = await getClient().query<HomeMain>({
