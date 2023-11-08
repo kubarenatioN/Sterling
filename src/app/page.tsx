@@ -11,13 +11,50 @@ import { getClient } from '@/lib/apollo/client';
 import { HomeMain } from '@/models';
 import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
+import { PageSchemaData } from './api/metadata/page/route';
 import styles from './main.module.css';
+
+const getMetadata = async () => {
+  const res = await fetch(
+    `${process.env.CLIENT_DOMAIN}/api/metadata/page?id=${15}`,
+    {
+      method: 'GET',
+    }
+  );
+
+  const data: PageSchemaData = await res.json();
+
+  const {
+    page: { seo },
+  } = data;
+
+  return seo;
+};
 
 export async function generateMetadata(
   props: any,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const seo = await getMetadata();
+
+  const {
+    opengraphTitle,
+    opengraphDescription,
+    opengraphImage,
+    title,
+    metaDesc,
+    opengraphPublishedTime,
+  } = seo;
+
   return {
+    metadataBase: new URL(process.env.CLIENT_DOMAIN!),
+    title,
+    description: metaDesc,
+    openGraph: {
+      title: opengraphTitle,
+      description: opengraphDescription,
+      images: opengraphImage.link,
+    },
     other: {
       'google-site-verification': '34qZu2Zsuk-pZXYS-kQjKTltOMSz8BMVaXLZ9xz_iXw',
     },
@@ -25,6 +62,8 @@ export async function generateMetadata(
 }
 
 export default async function Home() {
+  const seo = await getMetadata();
+
   const { data, error, loading } = await getClient().query<HomeMain>({
     query: GET_HOME_MAIN,
   });
@@ -49,7 +88,8 @@ export default async function Home() {
 
   return (
     <>
-      <PageSchema id={'15'} />
+      <PageSchema schema={seo.schema.raw} />
+      {/* <PageSchema id={'15'} /> */}
       <main>
         <div className='relative w-full'>
           <Image

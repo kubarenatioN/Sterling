@@ -1,4 +1,4 @@
-import { GET_PAGE_SCHEMA, GET_POST_SCHEMA } from '@/db/queries/schema';
+import { GET_POST_SCHEMA } from '@/db/queries/schema';
 import { getClient } from '@/lib/apollo/client';
 
 interface SchemaProps {
@@ -8,7 +8,35 @@ interface SchemaProps {
 interface PageSchemaData {
   page: {
     seo: {
-      fullHead: string;
+      opengraphUrl: string;
+      opengraphType: string;
+      opengraphTitle: string;
+      opengraphSiteName: string;
+      opengraphPublisher: string;
+      opengraphPublishedTime: string;
+      opengraphModifiedTime: string;
+      opengraphImage: {
+        link: string;
+      };
+      opengraphAuthor: string;
+      opengraphDescription: string;
+      twitterTitle: string;
+      twitterImage: {
+        sourceUrl: string;
+      };
+      twitterDescription: string;
+      title: string;
+      readingTime: string;
+      metaKeywords: string;
+      metaDesc: string;
+      canonical: string;
+      breadcrumbs: {
+        text: string;
+        url: string;
+      };
+      schema: {
+        raw: string;
+      };
     };
   };
 }
@@ -16,21 +44,54 @@ interface PageSchemaData {
 interface PostSchemaData {
   post: {
     seo: {
-      fullHead: string;
+      opengraphUrl: string;
+      opengraphType: string;
+      opengraphTitle: string;
+      opengraphSiteName: string;
+      opengraphPublisher: string;
+      opengraphPublishedTime: string;
+      opengraphModifiedTime: string;
+      opengraphImage: {
+        link: string;
+      };
+      opengraphAuthor: string;
+      opengraphDescription: string;
+      twitterTitle: string;
+      twitterImage: {
+        sourceUrl: string;
+      };
+      twitterDescription: string;
+      title: string;
+      readingTime: string;
+      metaKeywords: string;
+      metaDesc: string;
+      canonical: string;
+      breadcrumbs: {
+        text: string;
+        url: string;
+      };
+      schema: {
+        raw: string;
+      };
     };
   };
 }
 
-const PageSchema = async ({ id }: SchemaProps) => {
-  const { data } = await getClient().query<PageSchemaData>({
-    query: GET_PAGE_SCHEMA,
-    variables: {
-      id,
-    },
-  });
+const PageSchema = async ({ schema }: { schema: string }) => {
+  // const { data } = await getClient().query<PageSchemaData>({
+  //   query: GET_PAGE_SCHEMA,
+  //   variables: {
+  //     id,
+  //   },
+  // });
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: data.page.seo.fullHead }}></div>
+    <>
+      {/* Page Schema */}
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: schema }}></script>
+    </>
   );
 };
 

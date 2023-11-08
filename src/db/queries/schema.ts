@@ -6,7 +6,35 @@ export const GET_PAGE_SCHEMA = gql`
       slug
       databaseId
       seo {
-        fullHead
+        opengraphUrl
+        opengraphType
+        opengraphTitle
+        opengraphSiteName
+        opengraphPublisher
+        opengraphPublishedTime
+        opengraphModifiedTime
+        opengraphImage {
+          link
+        }
+        opengraphAuthor
+        opengraphDescription
+        twitterTitle
+        twitterImage {
+          sourceUrl
+        }
+        twitterDescription
+        title
+        readingTime
+        metaKeywords
+        metaDesc
+        canonical
+        breadcrumbs {
+          text
+          url
+        }
+        schema {
+          raw
+        }
       }
     }
   }
