@@ -1,4 +1,4 @@
-import { GET_POST_SCHEMA } from '@/db/queries/schema';
+import { GET_PAGE_SCHEMA, GET_POST_SCHEMA } from '@/db/queries/schema';
 import { getClient } from '@/lib/apollo/client';
 
 interface SchemaProps {
@@ -77,20 +77,24 @@ interface PostSchemaData {
   };
 }
 
-const PageSchema = async ({ schema }: { schema: string }) => {
-  // const { data } = await getClient().query<PageSchemaData>({
-  //   query: GET_PAGE_SCHEMA,
-  //   variables: {
-  //     id,
-  //   },
-  // });
+const PageSchema = async ({ schema, id }: { schema: string; id: string }) => {
+  const { data } = await getClient().query<PageSchemaData>({
+    query: GET_PAGE_SCHEMA,
+    variables: {
+      id,
+    },
+  });
+
+  const {
+    page: { seo },
+  } = data;
 
   return (
     <>
       {/* Page Schema */}
       <script
         type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: schema }}></script>
+        dangerouslySetInnerHTML={{ __html: seo.schema.raw }}></script>
     </>
   );
 };
