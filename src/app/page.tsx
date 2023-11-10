@@ -24,6 +24,9 @@ export async function generateMetadata(
   return {
     metadataBase: new URL(process.env.CLIENT_DOMAIN!),
     ...metadata,
+    alternates: {
+      canonical: process.env.CLIENT_DOMAIN,
+    },
     other: {
       'google-site-verification': '34qZu2Zsuk-pZXYS-kQjKTltOMSz8BMVaXLZ9xz_iXw',
     },

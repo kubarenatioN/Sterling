@@ -23,14 +23,9 @@ const page = async ({ params }: pageProps) => {
     },
   });
 
-  const {
-    title,
-    content,
-    featuredImage: {
-      node: { sourceUrl: blogImage },
-    },
-    databaseId,
-  } = post;
+  const { title, content, featuredImage, databaseId } = post;
+
+  const blogImage = featuredImage ? featuredImage.node.sourceUrl : null;
 
   return (
     <>
@@ -40,21 +35,23 @@ const page = async ({ params }: pageProps) => {
       </div>
 
       <div className='relative w-full min-h-[400px] bg-zinc-800'>
-        <Image
-          src={blogImage}
-          priority
-          alt='Blog featured image'
-          fill
-          style={{
-            objectFit: 'cover',
-          }}
-        />
+        {blogImage && (
+          <Image
+            src={blogImage}
+            priority
+            alt='Blog featured image'
+            fill
+            style={{
+              objectFit: 'cover',
+            }}
+          />
+        )}
       </div>
       <div className='w-[840px] mx-auto'>
-        <h1 className='text-center text-4xl py-4'>{post.title}</h1>
+        <h1 className='text-center text-4xl py-4'>{title}</h1>
         <div
           className='leading-relaxed'
-          dangerouslySetInnerHTML={{ __html: post.content }}></div>
+          dangerouslySetInnerHTML={{ __html: content }}></div>
       </div>
 
       <Footer></Footer>
