@@ -1,8 +1,22 @@
 import PageHeading from '@/components/PageHeading';
 import { GET_BLOG } from '@/db/queries/blog';
 import { getClient } from '@/lib/apollo/client';
+import { pagesDbId } from '@/lib/configs/common.config';
+import { getPageMetadata } from '@/lib/helpers/page-metadata';
 import { BlogPageData } from '@/models/blog.models';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const metadata = await getPageMetadata(pagesDbId.Blog);
+
+  return {
+    ...metadata,
+    alternates: {
+      canonical: process.env.CLIENT_DOMAIN,
+    },
+  };
+}
 
 const page = async () => {
   const { data } = await getClient().query<BlogPageData>({
