@@ -22,6 +22,10 @@ export const useMenu = (): NavItem[] => {
       label: 'Team',
     },
     {
+      path: '/blog',
+      label: 'Blog',
+    },
+    {
       path: '/contacts',
       label: 'Contacts',
     },

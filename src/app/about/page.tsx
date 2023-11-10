@@ -3,10 +3,29 @@ import CompanyValuesBlock from '@/components/CompanyValuesBlock';
 import Footer from '@/components/Footer';
 import FreeConsultingBlock from '@/components/FreeConsultingBlock';
 import PageHeading from '@/components/PageHeading';
+import { PageSchema } from '@/components/PageSchema';
 import ProjectsBlock from '@/components/ProjectsBlock';
 import { ABOUT_QUERY } from '@/db/queries/about';
 import { getClient } from '@/lib/apollo/client';
+import { pagesDbId } from '@/lib/configs/common.config';
+import { getPageMetadata } from '@/lib/helpers/page-metadata';
 import { AboutUsInfo } from '@/models/about.models';
+import { Metadata, ResolvingMetadata } from 'next';
+
+export async function generateMetadata(
+  props: any,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const metadata = await getPageMetadata(pagesDbId.About);
+
+  return {
+    metadataBase: new URL(process.env.CLIENT_DOMAIN!),
+    ...metadata,
+    other: {
+      'google-site-verification': '34qZu2Zsuk-pZXYS-kQjKTltOMSz8BMVaXLZ9xz_iXw',
+    },
+  };
+}
 
 const page = async () => {
   const { data } = await getClient().query<AboutUsInfo>({
@@ -19,6 +38,7 @@ const page = async () => {
 
   return (
     <>
+      <PageSchema id={pagesDbId.About} />
       <PageHeading></PageHeading>
       <AboutUsBlock
         className='container mt-[100px]'
