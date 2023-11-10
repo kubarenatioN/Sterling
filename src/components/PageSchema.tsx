@@ -8,6 +8,16 @@ interface SchemaProps {
 interface PageSchemaData {
   page: {
     seo: {
+      schema: {
+        raw: string;
+      };
+    };
+  };
+}
+
+export interface PageMetadata {
+  page: {
+    seo: {
       opengraphUrl: string;
       opengraphType: string;
       opengraphTitle: string;
@@ -16,8 +26,8 @@ interface PageSchemaData {
       opengraphPublishedTime: string;
       opengraphModifiedTime: string;
       opengraphImage: {
-        link: string;
-      };
+        link?: string;
+      } | null;
       opengraphAuthor: string;
       opengraphDescription: string;
       twitterTitle: string;
@@ -33,9 +43,6 @@ interface PageSchemaData {
       breadcrumbs: {
         text: string;
         url: string;
-      };
-      schema: {
-        raw: string;
       };
     };
   };
@@ -77,11 +84,11 @@ interface PostSchemaData {
   };
 }
 
-const PageSchema = async ({ schema, id }: { schema: string; id: string }) => {
+const PageSchema = async ({ id }: { id: string | number }) => {
   const { data } = await getClient().query<PageSchemaData>({
     query: GET_PAGE_SCHEMA,
     variables: {
-      id,
+      id: String(id),
     },
   });
 

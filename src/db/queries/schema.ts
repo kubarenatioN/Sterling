@@ -1,10 +1,11 @@
 import { gql } from '@apollo/client';
 
-export const GET_PAGE_SCHEMA = gql`
-  query PageSchema($id: ID!) {
+export const GET_PAGE_METADATA = gql`
+  query PageMetadata($id: ID!) {
     page(id: $id, idType: DATABASE_ID) {
       slug
       databaseId
+      id
       seo {
         opengraphUrl
         opengraphType
@@ -19,9 +20,6 @@ export const GET_PAGE_SCHEMA = gql`
         opengraphAuthor
         opengraphDescription
         twitterTitle
-        twitterImage {
-          sourceUrl
-        }
         twitterDescription
         title
         readingTime
@@ -32,6 +30,17 @@ export const GET_PAGE_SCHEMA = gql`
           text
           url
         }
+      }
+    }
+  }
+`;
+
+export const GET_PAGE_SCHEMA = gql`
+  query PageSchema($id: ID!) {
+    page(id: $id, idType: DATABASE_ID) {
+      slug
+      databaseId
+      seo {
         schema {
           raw
         }
@@ -46,7 +55,9 @@ export const GET_POST_SCHEMA = gql`
       slug
       databaseId
       seo {
-        fullHead
+        schema {
+          raw
+        }
       }
     }
   }

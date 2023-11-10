@@ -7,53 +7,23 @@ import MobileMenu from '@/components/MobileMenu';
 import { PageSchema } from '@/components/PageSchema';
 import ReviewsBlock from '@/components/ReviewsBlock';
 import { GET_HOME_MAIN } from '@/db/queries/home';
-import { GET_PAGE_SCHEMA } from '@/db/queries/schema';
 import { getClient } from '@/lib/apollo/client';
+import { pagesDbId } from '@/lib/configs/common.config';
+import { getPageMetadata } from '@/lib/helpers/page-metadata';
 import { HomeMain } from '@/models';
 import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
-import { PageSchemaData } from './api/metadata/page/route';
 import styles from './main.module.css';
-
-const getMetadata = async (id: string) => {
-  const { data } = await getClient().query<PageSchemaData>({
-    query: GET_PAGE_SCHEMA,
-    variables: {
-      id,
-    },
-  });
-
-  const {
-    page: { seo },
-  } = data;
-
-  return seo;
-};
 
 export async function generateMetadata(
   props: any,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const seo = await getMetadata('15');
-
-  const {
-    opengraphTitle,
-    opengraphDescription,
-    opengraphImage,
-    title,
-    metaDesc,
-    opengraphPublishedTime,
-  } = seo;
+  const metadata = await getPageMetadata(pagesDbId.Home);
 
   return {
     metadataBase: new URL(process.env.CLIENT_DOMAIN!),
-    title,
-    description: metaDesc,
-    openGraph: {
-      title: opengraphTitle,
-      description: opengraphDescription,
-      images: opengraphImage.link,
-    },
+    ...metadata,
     other: {
       'google-site-verification': '34qZu2Zsuk-pZXYS-kQjKTltOMSz8BMVaXLZ9xz_iXw',
     },
@@ -85,8 +55,7 @@ export default async function Home() {
 
   return (
     <>
-      <PageSchema schema={'asd'} id={'15'} />
-      {/* <PageSchema schema={seo.schema.raw} /> */}
+      <PageSchema id={'15'} />
       <main>
         <div className='relative w-full'>
           <Image
