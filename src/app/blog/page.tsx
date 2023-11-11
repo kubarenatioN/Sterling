@@ -1,4 +1,5 @@
 import PageHeading from '@/components/PageHeading';
+import { PageSchema } from '@/components/PageSchema';
 import { GET_BLOG } from '@/db/queries/blog';
 import { getClient } from '@/lib/apollo/client';
 import { pagesDbId } from '@/lib/configs/common.config';
@@ -29,6 +30,7 @@ const page = async () => {
 
   return (
     <>
+      <PageSchema id={pagesDbId.Blog} />
       <PageHeading></PageHeading>
 
       <h1>Discover our blog</h1>

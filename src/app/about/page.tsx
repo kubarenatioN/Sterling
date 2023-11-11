@@ -10,20 +10,13 @@ import { getClient } from '@/lib/apollo/client';
 import { pagesDbId } from '@/lib/configs/common.config';
 import { getPageMetadata } from '@/lib/helpers/page-metadata';
 import { AboutUsInfo } from '@/models/about.models';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 
-export async function generateMetadata(
-  props: any,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const metadata = await getPageMetadata(pagesDbId.About);
 
   return {
-    metadataBase: new URL(process.env.CLIENT_DOMAIN!),
     ...metadata,
-    other: {
-      'google-site-verification': '34qZu2Zsuk-pZXYS-kQjKTltOMSz8BMVaXLZ9xz_iXw',
-    },
   };
 }
 
