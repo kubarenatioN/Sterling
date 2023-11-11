@@ -1,8 +1,10 @@
 import Footer from '@/components/Footer';
 import HeaderWrapper from '@/components/HeaderWrapper';
 import MobileMenu from '@/components/MobileMenu';
-import { GET_POST } from '@/db/queries/posts';
+import { PostSchema } from '@/components/PageSchema';
+import { GET_POST } from '@/db/queries/blog';
 import { getClient } from '@/lib/apollo/client';
+import { Metadata } from 'next';
 import Image from 'next/image';
 
 interface pageProps {
@@ -11,13 +13,36 @@ interface pageProps {
   };
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { slug } = params;
+
+  const {
+    data: { post },
+  } = await getClient().query({
+    query: GET_POST,
+    variables: {
+      slug,
+    },
+  });
+
+  const metadata: Metadata = {
+    title: '',
+  };
+
+  return metadata;
+}
+
 const page = async ({ params }: pageProps) => {
   const { slug } = params;
 
   const {
     data: { post },
   } = await getClient().query({
-    query: GET_POST(slug),
+    query: GET_POST,
     variables: {
       slug,
     },
@@ -29,6 +54,7 @@ const page = async ({ params }: pageProps) => {
 
   return (
     <>
+      <PostSchema id={slug} />
       <HeaderWrapper></HeaderWrapper>
       <div className='md:hidden'>
         <MobileMenu></MobileMenu>
