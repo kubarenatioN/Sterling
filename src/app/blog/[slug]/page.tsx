@@ -4,6 +4,7 @@ import MobileMenu from '@/components/MobileMenu';
 import { PostSchema } from '@/components/PageSchema';
 import { GET_POST } from '@/db/queries/blog';
 import { getClient } from '@/lib/apollo/client';
+import fs from 'fs/promises';
 import { Metadata } from 'next';
 import Image from 'next/image';
 
@@ -54,6 +55,25 @@ const page = async ({ params }: pageProps) => {
 
   return (
     <>
+      <style>
+        {`
+        h2 {
+          font-size: 6rem;
+          color: green;
+        }
+        
+        p {
+          margin: 15px 0;
+        }
+
+        ul, ol {
+          list-style: circle;
+        }
+        li {
+          padding: 10px 0;
+        }
+      `}
+      </style>
       <PostSchema id={slug} />
       <HeaderWrapper></HeaderWrapper>
       <div className='md:hidden'>
@@ -73,8 +93,8 @@ const page = async ({ params }: pageProps) => {
           />
         )}
       </div>
-      <div className='w-[840px] mx-auto'>
-        <h1 className='text-center text-4xl py-4'>{title}</h1>
+      <div className='max-w-[840px] mx-auto px-2'>
+        <h1 className='text-4xl py-4'>{title}</h1>
         <div
           className='leading-relaxed'
           dangerouslySetInnerHTML={{ __html: content }}></div>
@@ -83,6 +103,16 @@ const page = async ({ params }: pageProps) => {
       <Footer></Footer>
     </>
   );
+};
+
+const getFileContent = async (filePath: string) => {
+  try {
+    const fileContent = await fs.readFile(filePath, 'utf-8');
+    return fileContent;
+  } catch (error) {
+    console.error('Error reading file:', error);
+    return null;
+  }
 };
 
 export default page;

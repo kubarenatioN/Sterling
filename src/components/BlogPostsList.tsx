@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Loader from './Loader';
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 4;
 
 const BlogPostsList = ({ searchQuery }: { searchQuery: string }) => {
   const [search, setSearch] = useState(searchQuery);
@@ -77,50 +77,60 @@ const BlogPostsList = ({ searchQuery }: { searchQuery: string }) => {
   return (
     <div>
       <div className='flex flex-wrap justify-center gap-6'>
-        {edges.map((edge) => {
-          const { node, cursor } = edge;
-          const { databaseId, slug, title, featuredImage, excerpt, modified } =
-            node;
+        {edges && edges.length > 0 ? (
+          edges.map((edge) => {
+            const { node, cursor } = edge;
+            const {
+              databaseId,
+              slug,
+              title,
+              featuredImage,
+              excerpt,
+              modified,
+            } = node;
 
-          return (
-            <Link
-              href={'blog/' + slug}
-              key={databaseId}
-              role='button'
-              className='min-h-[200px] w-[300px] flex flex-col rounded-md shadow-md shadow-neutral-300 duration-200 hover:scale-[1.02] overflow-hidden'>
-              {featuredImage ? (
-                <Image
-                  src={featuredImage.node.sourceUrl}
-                  height={140}
-                  width={300}
-                  alt='Blog post image'
-                  style={{
-                    width: 300,
-                    height: 140,
-                    objectFit: 'cover',
-                  }}
-                />
-              ) : (
-                <div className='bg-zinc-100 h-[140px] w-full flex justify-center items-center'>
-                  <LucideImage />
+            return (
+              <Link
+                href={'blog/' + slug}
+                key={databaseId}
+                role='button'
+                className='min-h-[200px] w-[300px] flex flex-col rounded-md shadow-md shadow-neutral-300 duration-200 hover:scale-[1.02] overflow-hidden'>
+                {featuredImage ? (
+                  <Image
+                    src={featuredImage.node.sourceUrl}
+                    height={140}
+                    width={300}
+                    alt='Blog post image'
+                    style={{
+                      width: 300,
+                      height: 140,
+                      objectFit: 'cover',
+                    }}
+                  />
+                ) : (
+                  <div className='bg-zinc-100 h-[140px] w-full flex justify-center items-center'>
+                    <LucideImage />
+                  </div>
+                )}
+                <div className='px-3 pt-2 pb-4 flex flex-col grow'>
+                  <span className='font-bold min-h-[3rem]'>{title}</span>
+                  <div
+                    className='text-sm line-clamp-3'
+                    dangerouslySetInnerHTML={{ __html: excerpt }}></div>
+                  <div className='mt-auto pt-2'>
+                    {modified && (
+                      <p className='text-xs text-right italic text-neutral-500'>
+                        {format(new Date(modified), 'MMM dd, yyyy')}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              )}
-              <div className='px-3 pt-2 pb-4 flex flex-col grow'>
-                <span className='font-bold min-h-[3rem]'>{title}</span>
-                <div
-                  className='text-sm line-clamp-3'
-                  dangerouslySetInnerHTML={{ __html: excerpt }}></div>
-                <div className='mt-auto pt-2'>
-                  {modified && (
-                    <p className='text-xs text-right italic text-neutral-500'>
-                      {format(new Date(modified), 'MMM dd, yyyy')}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })
+        ) : (
+          <div>No results found...</div>
+        )}
       </div>
 
       <div className='py-4 flex justify-center gap-4'>
