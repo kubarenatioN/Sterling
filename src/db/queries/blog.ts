@@ -1,8 +1,20 @@
 import { gql } from '@apollo/client';
 
 export const GET_BLOG_POSTS = gql`
-  query BlogPosts($first: Int, $last: Int, $after: String, $before: String) {
-    posts(first: $first, last: $last, after: $after, before: $before) {
+  query BlogPosts(
+    $first: Int
+    $last: Int
+    $after: String
+    $before: String
+    $title: String
+  ) {
+    posts(
+      first: $first
+      last: $last
+      after: $after
+      before: $before
+      where: { search: $title }
+    ) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -22,6 +34,7 @@ export const GET_BLOG_POSTS = gql`
             }
           }
           databaseId
+          modified
         }
       }
     }

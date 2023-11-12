@@ -1,4 +1,4 @@
-import BlogPostsList from '@/components/BlogPostsList';
+import BlogPosts from '@/components/BlogPosts';
 import PageHeading from '@/components/PageHeading';
 import { PageSchema } from '@/components/PageSchema';
 import { pagesDbId } from '@/lib/configs/common.config';
@@ -22,8 +22,10 @@ const page = async () => {
       <PageSchema id={pagesDbId.Blog} />
       <PageHeading></PageHeading>
 
-      <h1>Discover our blog</h1>
-      <BlogPostsList />
+      <div className='mt-8 container'>
+        <h1 className='text-3xl text-center'>Discover our blog</h1>
+        <BlogPosts />
+      </div>
     </>
   );
 };

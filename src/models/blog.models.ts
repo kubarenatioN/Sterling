@@ -10,6 +10,7 @@ export interface BlogPost {
     };
   } | null;
   databaseId: number;
+  modified?: string;
 }
 
 export interface BlogPostsList {
