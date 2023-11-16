@@ -1,13 +1,23 @@
 import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
 import PageHeading from '@/components/PageHeading';
-import { FC } from 'react';
+import { PageSchema } from '@/components/PageSchema';
+import { pagesDbId } from '@/lib/configs/common.config';
+import { getPageMetadata } from '@/lib/helpers/page-metadata';
+import { Metadata } from 'next';
 
-interface pageProps {}
+export async function generateMetadata(): Promise<Metadata> {
+  const metadata = await getPageMetadata(pagesDbId.Contacts);
 
-const page: FC<pageProps> = ({}) => {
+  return {
+    ...metadata,
+  };
+}
+
+const page = ({}) => {
   return (
     <>
+      <PageSchema id={pagesDbId.Contacts} />
       <PageHeading></PageHeading>
 
       <div className='mt-[100px] container flex flex-col justify-center items-center'>

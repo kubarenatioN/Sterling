@@ -114,9 +114,18 @@ const PostSchema = async ({ id }: SchemaProps) => {
     },
   });
 
-  console.log(data);
+  const {
+    post: { seo },
+  } = data;
 
-  return <div>slug: {id}</div>;
+  return (
+    <>
+      {/* Page Schema */}
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: seo.schema.raw }}></script>
+    </>
+  );
 };
 
-export { PageSchema };
+export { PageSchema, PostSchema };

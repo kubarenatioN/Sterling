@@ -1,18 +1,29 @@
 export interface BlogPost {
+  id: string;
   title: string;
   slug: string;
   excerpt: string;
-  content: string;
+  content?: string;
   featuredImage: {
     node: {
       sourceUrl: string;
     };
   } | null;
   databaseId: number;
+  modified?: string;
 }
 
-export interface BlogPageData {
+export interface BlogPostsList {
   posts: {
-    nodes: BlogPost[];
+    pageInfo: {
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+      startCursor: string;
+      endCursor: string;
+    };
+    edges: {
+      cursor: string;
+      node: BlogPost;
+    }[];
   };
 }
