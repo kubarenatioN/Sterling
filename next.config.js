@@ -7,6 +7,7 @@ const nextConfig = {
       },
     ],
   },
+  sassOptions: {},
 };
 
 module.exports = nextConfig;

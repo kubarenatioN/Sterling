@@ -47,6 +47,7 @@ export const GET_POST = gql`
       slug
       id
       title
+      excerpt
       databaseId
       content(format: RENDERED)
       featuredImage {

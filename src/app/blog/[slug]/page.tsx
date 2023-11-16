@@ -4,9 +4,11 @@ import MobileMenu from '@/components/MobileMenu';
 import { PostSchema } from '@/components/PageSchema';
 import { GET_POST } from '@/db/queries/blog';
 import { getClient } from '@/lib/apollo/client';
-import fs from 'fs/promises';
+import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import { blogStyles } from './styles';
+import styles from './styles.module.scss';
 
 interface pageProps {
   params: {
@@ -30,8 +32,11 @@ export async function generateMetadata({
     },
   });
 
+  const { title, content, featuredImage, databaseId, excerpt } = post;
+
   const metadata: Metadata = {
-    title: '',
+    title,
+    description: excerpt,
   };
 
   return metadata;
@@ -55,27 +60,11 @@ const page = async ({ params }: pageProps) => {
 
   return (
     <>
-      <style>
-        {`
-        h2 {
-          font-size: 6rem;
-          color: green;
-        }
-        
-        p {
-          margin: 15px 0;
-        }
-
-        ul, ol {
-          list-style: circle;
-        }
-        li {
-          padding: 10px 0;
-        }
-      `}
-      </style>
+      <style>{blogStyles}</style>
       <PostSchema id={slug} />
+
       <HeaderWrapper></HeaderWrapper>
+
       <div className='md:hidden'>
         <MobileMenu></MobileMenu>
       </div>
@@ -96,23 +85,13 @@ const page = async ({ params }: pageProps) => {
       <div className='max-w-[840px] mx-auto px-2'>
         <h1 className='text-4xl py-4'>{title}</h1>
         <div
-          className='leading-relaxed'
+          className={cn('blog leading-relaxed', styles.blog)}
           dangerouslySetInnerHTML={{ __html: content }}></div>
       </div>
 
       <Footer></Footer>
     </>
   );
-};
-
-const getFileContent = async (filePath: string) => {
-  try {
-    const fileContent = await fs.readFile(filePath, 'utf-8');
-    return fileContent;
-  } catch (error) {
-    console.error('Error reading file:', error);
-    return null;
-  }
 };
 
 export default page;
