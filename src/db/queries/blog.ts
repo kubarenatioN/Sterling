@@ -41,6 +41,25 @@ export const GET_BLOG_POSTS = gql`
   }
 `;
 
+export const GET_ALL_BLOG_POSTS = gql`
+  query BlogPosts {
+    posts {
+      nodes {
+        title
+        slug
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        databaseId
+        modified
+      }
+    }
+  }
+`;
+
 export const GET_POST = gql`
   query GetPost($slug: ID!) {
     post(id: $slug, idType: SLUG) {

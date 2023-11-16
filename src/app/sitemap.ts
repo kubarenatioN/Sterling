@@ -1,6 +1,6 @@
-import { GET_BLOG } from '@/db/queries/blog';
+import { GET_ALL_BLOG_POSTS } from '@/db/queries/blog';
 import { getClient } from '@/lib/apollo/client';
-import { BlogPageData } from '@/models/blog.models';
+import { BlogPost } from '@/models/blog.models';
 import { MetadataRoute } from 'next';
 
 export const revalidate = 3600;
@@ -41,8 +41,8 @@ const pages = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const { data } = await getClient().query<BlogPageData>({
-    query: GET_BLOG,
+  const { data } = await getClient().query<{ posts: { nodes: BlogPost[] } }>({
+    query: GET_ALL_BLOG_POSTS,
   });
 
   const {
@@ -55,8 +55,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return {
       url: `${baseUrl}/blog/${node.slug}`,
       lastModified,
-      changeFrequency: 'yearly' as any,
-      priority: 0.8,
+      changeFrequency: 'monthly' as any,
+      priority: 1,
     };
   });
 
