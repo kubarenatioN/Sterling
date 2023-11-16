@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const GET_BLOG_POSTS = gql`
-  query BlogPosts(
+  query BlogPostsPagination(
     $first: Int
     $last: Int
     $after: String
@@ -42,7 +42,7 @@ export const GET_BLOG_POSTS = gql`
 `;
 
 export const GET_ALL_BLOG_POSTS = gql`
-  query BlogPosts {
+  query AllBlogPosts {
     posts {
       nodes {
         title
